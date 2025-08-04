@@ -12,7 +12,8 @@ import MyCampaignDetails from "./MyCampaignDetails";
 import EmptyState from "./EmptyState";
 import {
   Campaign as CampaignType,
-  MyCampaign as MyCampaignType, PublisherCampaign
+  MyCampaign as MyCampaignType,
+  PublisherCampaign,
 } from "../../lib/types";
 import { useAuth } from "@/context/AuthProvider";
 import { useToast } from "@/hooks/use-toast";
@@ -45,9 +46,9 @@ const Campaign: React.FC = () => {
   const [activeView, setActiveView] = useState<"marketplace" | "myCampaigns">(
     "marketplace"
   );
-  const [selectedCampaign, setSelectedCampaign] = useState<
-    CampaignType | null
-  >(null);
+  const [selectedCampaign, setSelectedCampaign] = useState<CampaignType | null>(
+    null
+  );
   const [selectedUserCampaign, setSelectedUserCampaign] =
     useState<MyCampaignType | null>(null);
   const [createCampaign, setCreateCampaign] = useState<boolean>(false);
@@ -55,13 +56,11 @@ const Campaign: React.FC = () => {
   const [isCreatingCampaign, setIsCreatingCampaign] = useState(false);
   const [campaignCount, setCampaignCount] = useState(0);
 
-
   // const [joinedStatuses, setJoinedStatuses] = useState<Record<string, "joined">>({});
 
-    const [publisherCampaigns, setPublisherCampaigns] = useState<
-      PublisherCampaign[]
-    >([]);
-  
+  const [publisherCampaigns, setPublisherCampaigns] = useState<
+    PublisherCampaign[]
+  >([]);
 
   const filters = useMemo(() => rawFilters, [rawFilters]);
   const [allCampaigns, setAllCampaigns] = useState<Campaign[]>([]);
@@ -70,7 +69,7 @@ const Campaign: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   const itemsPerPage = 10;
-  const initialCampaigns = EMPTY_ARRAY
+  const initialCampaigns = EMPTY_ARRAY;
 
   const fetchCampaigns = async () => {
     setIsLoading(true);
@@ -110,34 +109,34 @@ const Campaign: React.FC = () => {
   }, [initialCampaigns, itemsPerPage]);
 
   // Load campaigns from localStorage on component mount
-useEffect(() => {
-  const stored = localStorage.getItem("publisher_campaign");
-  const campaigns: PublisherCampaign[] = stored ? JSON.parse(stored) : [];
+  useEffect(() => {
+    const stored = localStorage.getItem("publisher_campaign");
+    const campaigns: PublisherCampaign[] = stored ? JSON.parse(stored) : [];
 
-  // Add "joined" status to existing entries if not present
-  const patched = campaigns.map((c) => ({
-    ...c,
-    status: c.status || "joined", // default to 'joined' if missing
-  }));
+    // Add "joined" status to existing entries if not present
+    const patched = campaigns.map((c) => ({
+      ...c,
+      status: c.status || "joined", // default to 'joined' if missing
+    }));
 
-  setPublisherCampaigns(patched);
+    setPublisherCampaigns(patched);
 
-  // Update localStorage with patched values
-  localStorage.setItem("publisher_campaign", JSON.stringify(patched));
-}, []);
+    // Update localStorage with patched values
+    localStorage.setItem("publisher_campaign", JSON.stringify(patched));
+  }, []);
 
-const joinedStatuses = useMemo(() => {
-  const map: Record<string, "joined"> = {};
-  publisherCampaigns.forEach((pc) => {
-    if (pc.status === "joined") {
-      map[pc.campaignId] = "joined";
-    }
-  });
-  return map;
-}, [publisherCampaigns]);
+  const joinedStatuses = useMemo(() => {
+    const map: Record<string, "joined"> = {};
+    publisherCampaigns.forEach((pc) => {
+      if (pc.status === "joined") {
+        map[pc.campaignId] = "joined";
+      }
+    });
+    return map;
+  }, [publisherCampaigns]);
   const handleJoinSuccess = (campaignId: string, joinResponse: any) => {
     // Update the specific campaign's status to "Joined"
-    
+
     const status = joinResponse.status;
     // Update publisher campaigns in localStorage and state
     const newPublisherCampaign: PublisherCampaign = {
@@ -147,19 +146,18 @@ const joinedStatuses = useMemo(() => {
       _id: joinResponse._id || "",
       status,
     };
-  
+
     const updatedPublisherCampaigns = [
       ...publisherCampaigns,
       newPublisherCampaign,
     ];
-    
+
     // UPDATE STATE FIRST, THEN LOCALSTORAGE
     setPublisherCampaigns(updatedPublisherCampaigns);
     localStorage.setItem(
       "publisher_campaign",
       JSON.stringify(updatedPublisherCampaigns)
     );
-  
   };
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -208,9 +206,9 @@ const joinedStatuses = useMemo(() => {
 
     fetchCampaigns();
   }, []);
-  
+
   const isCampaignJoined = (campaignId: string) =>
-  joinedStatuses[campaignId] === "joined";
+    joinedStatuses[campaignId] === "joined";
 
   const handleFilterChange = (newFilters: FilterState) => {
     setRawFilters(newFilters);
@@ -522,67 +520,65 @@ const joinedStatuses = useMemo(() => {
   };
   // if (!selectedCampaign) return null;
 
-
   return (
-    <div className="container mx-auto px-2 mt-[-2.5rem]">
-  {selectedCampaign ? (
-    <MyCampaignDetails
-      campaign={selectedCampaign}
-      onBack={handleBack}
-      handleJoinSuccess={handleJoinSuccess}
-      isCampaignJoined ={isCampaignJoined}
-      mycampaigns={userCampaigns}
-    />
-  ) : selectedUserCampaign ? (
-    <CampaignDetails
-      campaign={selectedUserCampaign}
-      onBack={handleBackUserCampaign}
-    />
-  ) : createCampaign ? (
-    <CreateCampaign
-      handleGoBack={handleCreateBack}
-      onCampaignCreate={handleAddCampaign}
-    />
-  ) : (
-    <>
-      <CampaignHead
-        handleCreateCampaign={handleCreateCampaign}
-        activeView={activeView}
-        setActiveView={setActiveView}
-      />
-      {(activeView === "marketplace" && campaignCount > 0) ||
-      (activeView === "myCampaigns" && userCampaigns.length > 0) ? (
-        <CampaignFilter onFilterChange={handleFilterChange} />
-      ) : (
-        ""
-      )}
-      {activeView === "marketplace" ? (
-        <CampaignLists
-      allCampaigns={allCampaigns}
-      loading={isLoading}
-      setAllCampaigns={setAllCampaigns}
-      isEmpty={isEmpty}
-      totalPages={totalPages}
-      activeFilters={filters}
-      onViewDetails={handleViewDetails}
-      onCampaignCountChange={handleCampaignCountChange}
-      handleJoinSuccess={handleJoinSuccess}
-      isJoined={joinedStatuses}
-      mycampaigns={userCampaigns}
-    />
-      ) : userCampaigns.length === 0 ? (
-        <EmptyState onCreateCampaign={handleCreateCampaign} />
-      ) : (
-        <MyCampaignLists
-          activeFilters={filters}
-          onViewDetails={handleViewDetailsUserCampaign}
-          campaigns={userCampaigns}
+    <div className="container mx-auto mt-[-2.5rem]">
+      {selectedCampaign ? (
+        <MyCampaignDetails
+          campaign={selectedCampaign}
+          onBack={handleBack}
+          handleJoinSuccess={handleJoinSuccess}
+          isCampaignJoined={isCampaignJoined}
+          mycampaigns={userCampaigns}
         />
+      ) : selectedUserCampaign ? (
+        <CampaignDetails
+          campaign={selectedUserCampaign}
+          onBack={handleBackUserCampaign}
+        />
+      ) : createCampaign ? (
+        <CreateCampaign
+          handleGoBack={handleCreateBack}
+          onCampaignCreate={handleAddCampaign}
+        />
+      ) : (
+        <>
+          <CampaignHead
+            handleCreateCampaign={handleCreateCampaign}
+            activeView={activeView}
+            setActiveView={setActiveView}
+          />
+          {(activeView === "marketplace" && campaignCount > 0) ||
+          (activeView === "myCampaigns" && userCampaigns.length > 0) ? (
+            <CampaignFilter onFilterChange={handleFilterChange} />
+          ) : (
+            ""
+          )}
+          {activeView === "marketplace" ? (
+            <CampaignLists
+              allCampaigns={allCampaigns}
+              loading={isLoading}
+              setAllCampaigns={setAllCampaigns}
+              isEmpty={isEmpty}
+              totalPages={totalPages}
+              activeFilters={filters}
+              onViewDetails={handleViewDetails}
+              onCampaignCountChange={handleCampaignCountChange}
+              handleJoinSuccess={handleJoinSuccess}
+              isJoined={joinedStatuses}
+              mycampaigns={userCampaigns}
+            />
+          ) : userCampaigns.length === 0 ? (
+            <EmptyState onCreateCampaign={handleCreateCampaign} />
+          ) : (
+            <MyCampaignLists
+              activeFilters={filters}
+              onViewDetails={handleViewDetailsUserCampaign}
+              campaigns={userCampaigns}
+            />
+          )}
+        </>
       )}
-    </>
-  )}
-</div>
-
+    </div>
   );
 };
 

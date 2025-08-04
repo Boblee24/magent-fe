@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MoreVertical } from "lucide-react";
 import { MyCampaign } from "@/lib/types";
 import { capitalizeEachWord } from "@/utils/capitalize";
@@ -13,6 +13,26 @@ const MyCampaignList: React.FC<MyCampaignListProps> = ({
   onViewDetails,
 }) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
+  const optionsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        optionsRef.current &&
+        !optionsRef.current.contains(event.target as Node)
+      ) {
+        setShowOptions(false);
+      }
+    }
+    if (showOptions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showOptions]);
 
   const getStatusBadgeClass = (status: string) => {
     switch (status) {
@@ -78,7 +98,7 @@ const MyCampaignList: React.FC<MyCampaignListProps> = ({
   </td>
   <td className="py-3 px-4 text-[10px] md:text-xs">
     <div className="flex items-center gap-2">
-      <div className="relative z-50">
+      <div className="relative z-50" ref={optionsRef}>
         <button
           className="text-gray-500 hover:bg-gray-100 p-1 rounded-full"
           onClick={toggleOptions}

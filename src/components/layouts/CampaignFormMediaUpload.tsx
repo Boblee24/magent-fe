@@ -150,8 +150,8 @@ const CampaignFormMediaUpload: React.FC<CampaignMediaUploadProps> = ({
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-medium mb-4">Upload media</h3>
-      <p className="text-sm text-gray-600 mb-4">
+      <h3 className="text-lg font-medium mb-2 md:mb-4">Upload media</h3>
+      <p className="text-sm text-gray-600 mb-2 md:mb-4">
         Choose what media you want to upload
       </p>
 
@@ -194,7 +194,7 @@ const CampaignFormMediaUpload: React.FC<CampaignMediaUploadProps> = ({
           <p className="text-sm text-center">
             Select image to upload
             <br />
-            <span className="text-xs text-gray-500">
+            <span className="text-[10px] md:text-xs text-gray-500">
               Supported format: JPG, PNG, GIF, WebP (1MB max)
             </span>
           </p>

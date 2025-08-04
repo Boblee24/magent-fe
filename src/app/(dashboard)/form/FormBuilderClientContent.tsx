@@ -25,7 +25,6 @@ export default function FormBuilderClientContent({ formId }: Props) {
     const isEdit = !!formId;
 
     if (isEdit) {
-      // fetch form for editing
       const fetchForm = async () => {
         try {
           const form = await apiClient(`/form/${formId}`);
@@ -49,13 +48,18 @@ export default function FormBuilderClientContent({ formId }: Props) {
   }, [formId, searchParams]);
 
   if (isLoading) {
-    return <div className="p-6 text-sm text-gray-600">Loading form...</div>;
+    return (
+      <div className="py-20 flex justify-center items-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-900"></div>
+      </div>
+    );
   }
 
   return (
-    <main className="h-screen bg-gray-50">
-      <div className="bg-white border-b border-gray-200 px-6 py-3">
-        <div className="flex items-center mb-4">
+    <main className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 px-1 md:px-6 md:py-4 sm:px-6">
+        <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
           <button
             onClick={() => router.back()}
             className="flex items-center text-gray-600 hover:text-gray-900 text-sm"
@@ -63,31 +67,38 @@ export default function FormBuilderClientContent({ formId }: Props) {
             <MdArrowBackIos size={16} className="mr-1" />
             Back
           </button>
+          {campaignId && (
+            <span className="text-xs text-gray-400 whitespace-nowrap">
+              Campaign ID: {campaignId}
+            </span>
+          )}
         </div>
-        <div className="flex items-center justify-between">
+
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
           <div>
-            <h1 className="text-lg font-semibold text-gray-900">
+            <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
               {formId ? "Edit Form" : "Create Form"}
             </h1>
-            <p className="text-sm text-gray-500">
+            {/* <p className="text-sm text-gray-500">
               {campaignId
                 ? `Form for Campaign: ${campaignId}`
                 : "No Campaign Linked"}
-            </p>
+            </p> */}
           </div>
-          {campaignId && (
-            <div className="text-xs text-gray-400">Campaign ID: {campaignId}</div>
-          )}
         </div>
       </div>
-      <div className="h-[calc(100vh-80px)]">
-        <FormBuilderClientWrapper
-          initialFields={initialFields}
-          initialTitle={initialTitle}
-          initialDescription={initialDescription}
-          campaignId={campaignId}
-          formId={formId}
-        />
+
+      {/* Form Builder */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-[1440px] mx-auto ">
+          <FormBuilderClientWrapper
+            initialFields={initialFields}
+            initialTitle={initialTitle}
+            initialDescription={initialDescription}
+            campaignId={campaignId}
+            formId={formId}
+          />
+        </div>
       </div>
     </main>
   );
