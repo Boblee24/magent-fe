@@ -8,7 +8,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 
-export function LoadingState() {
+function LoadingState() {
   return (
     <div className="flex w-full h-full justify-center items-center fixed inset-0 bg-[#330065] z-50">
       <motion.div
