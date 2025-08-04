@@ -22,16 +22,15 @@ interface FieldListProps {
 
 export const FieldList: React.FC<FieldListProps> = ({ onAddField }) => {
   return (
-    <div className="space-y-2 p-2 border-r border-gray-200">
-      <h2 className="text-lg font-medium mb-2">Add Field</h2>
-      <div className="flex flex-col gap-1">
+    <div className="space-y-3">
+      <div className="flex flex-wrap gap-2">
         {AVAILABLE_FIELDS.map((field) => (
           <button
             key={field.type}
             onClick={() => onAddField(field.type)}
-            className="rounded border px-3 py-1 text-sm hover:bg-gray-100 text-left"
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
           >
-            {field.label}
+            + {field.label}
           </button>
         ))}
       </div>

@@ -255,7 +255,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
             {formAnalytics ? (
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
                 <button
-                  className="bg-[#330065] text-white px-4 sm:px-6 py-2 rounded-md text-xs sm:text-sm hover:bg-purple-700 transition-colors"
+                  className="bg-[#330065] text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm hover:bg-purple-700 transition-colors"
                   onClick={handleViewAnalytics}
                   disabled={isLoading}
                 >
@@ -263,7 +263,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
                 </button>
 
                 <button
-                  className="bg-gray-600 text-white px-4 sm:px-6 py-2 rounded-md text-xs sm:text-sm hover:bg-gray-700 transition-colors flex items-center justify-center gap-2"
+                  className="bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm hover:bg-gray-700 transition-colors flex items-center justify-center gap-2"
                   onClick={handleCopyLink}
                 >
                   {copied ? (
@@ -304,7 +304,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
                 </button>
 
                 <button
-                  className="bg-[#330065] text-white px-4 sm:px-6 py-2 rounded-md text-xs sm:text-sm hover:bg-blue-700 transition-colors"
+                  className="bg-[#330065] text-white px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm hover:bg-purple-700 transition-colors"
                   onClick={handleEditForm}
                   disabled={isLoading || navigating}
                 >
