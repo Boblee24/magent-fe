@@ -128,7 +128,7 @@ const CampaignDetails: React.FC<CampaignDetailsProps> = ({
   };
 
   return (
-    <div className="w-full p-4 bg-white rounded-md shadow">
+    <div className="w-full p-2 md:p-4 bg-white ">
       <div className="flex items-center mb-4">
         <button
           onClick={onBack}

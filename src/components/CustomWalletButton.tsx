@@ -75,7 +75,7 @@ export function CustomWalletButton(props: any) {
       <Button
         onClick={handleClick}
         disabled={connecting || isAuthenticating}
-        className="md:w-full bg-[#330065] hover:bg-[#5C3384] text-white hover:text-white font-medium py-[8px] px-[20px] rounded-[32px]"
+        className="md:w-full bg-[#330065] hover:bg-[#5C3384] text-white hover:text-white font-medium py-[4px] px-[16px] rounded-[32px] text-sm md:text-base"
         {...props}
       >
         {getButtonText()}

@@ -1,6 +1,6 @@
 // "use client"
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MoreVertical } from "lucide-react";
 import { MdOutlineCheckCircle } from "react-icons/md";
 import { useToast } from "@/hooks/use-toast";
@@ -57,7 +57,26 @@ const CampaignList: React.FC<CampaignListProps> = ({
     (myCamp) => myCamp.id === campaign._id
   );
 
-  console.log(mycampaigns, "mycampaigns");
+  // console.log(mycampaigns, "mycampaigns");
+  const optionsRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        optionsRef.current &&
+        !optionsRef.current.contains(event.target as Node)
+      ) {
+        setShowOptions(false);
+      }
+    }
+    if (showOptions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showOptions]);
 
   const handleAccept = () => {
     const localStored = localStorage.getItem("wallet_connected_address");
@@ -163,7 +182,7 @@ const CampaignList: React.FC<CampaignListProps> = ({
             </button>
 
             <div>
-              <div className="relative">
+              <div className="relative" ref={optionsRef}>
                 <button
                   className="text-gray-500 hover:bg-gray-100 p-1 rounded-full"
                   onClick={toggleOptions}

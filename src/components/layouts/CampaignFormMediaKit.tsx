@@ -20,7 +20,7 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
       {/* Website and Twitter */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="website" className="block text-xs md:text-base font-medium text-gray-700 mb-1">
             Website <span className="text-red-500">*</span>
           </label>
           <input
@@ -30,16 +30,16 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
             value={formik.values.website}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
             placeholder="https://yourproject.xyz"
           />
           {formik.touched.website && formik.errors.website && (
-            <div className="text-red-500 text-xs mt-1">{formik.errors.website as string}</div>
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.website as string}</div>
           )}
         </div>
 
         <div>
-          <label htmlFor="twitter" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="twitter" className="block text-xs md:text-base font-medium text-gray-700 mb-1">
             X (formerly Twitter) <span className="text-red-500">*</span>
           </label>
           <input
@@ -49,11 +49,11 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
             value={formik.values.twitter}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
             placeholder="https://x.com/yourhandle"
           />
           {formik.touched.twitter && formik.errors.twitter && (
-            <div className="text-red-500 text-xs mt-1">{formik.errors.twitter as string}</div>
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.twitter as string}</div>
           )}
         </div>
       </div>
@@ -61,7 +61,7 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
       {/* YouTube and Instagram */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="youtube" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="youtube" className="block text-xs md:text-base font-medium text-gray-700 mb-1">
             YouTube
           </label>
           <input
@@ -71,16 +71,16 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
             value={formik.values.youtube}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
             placeholder="https://youtube.com/yourchannel"
           />
           {formik.touched.youtube && formik.errors.youtube && (
-            <div className="text-red-500 text-xs mt-1">{formik.errors.youtube as string}</div>
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.youtube as string}</div>
           )}
         </div>
 
         <div>
-          <label htmlFor="instagram" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="instagram" className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
             Instagram
           </label>
           <input
@@ -90,11 +90,11 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
             value={formik.values.instagram}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
             placeholder="https://instagram.com/yourhandle"
           />
           {formik.touched.instagram && formik.errors.instagram && (
-            <div className="text-red-500 text-xs mt-1">{formik.errors.instagram as string}</div>
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.instagram as string}</div>
           )}
         </div>
       </div>
@@ -102,7 +102,7 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
       {/* Telegram and Discord */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="telegram" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="telegram" className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
             Telegram
           </label>
           <input
@@ -112,16 +112,16 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
             value={formik.values.telegram}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
             placeholder="https://t.me/yourchannel"
           />
           {formik.touched.telegram && formik.errors.telegram && (
-            <div className="text-red-500 text-xs mt-1">{formik.errors.telegram as string}</div>
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.telegram as string}</div>
           )}
         </div>
 
         <div>
-          <label htmlFor="discord" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="discord" className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
             Discord
           </label>
           <input
@@ -131,18 +131,18 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
             value={formik.values.discord}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
             placeholder="https://discord.gg/yourserver"
           />
           {formik.touched.discord && formik.errors.discord && (
-            <div className="text-red-500 text-xs mt-1">{formik.errors.discord as string}</div>
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.discord as string}</div>
           )}
         </div>
       </div>
 
       {/* Other Resources */}
       <div className="mb-4">
-        <label htmlFor="otherResources" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="otherResources" className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
           Other resources
         </label>
         <input
@@ -152,17 +152,17 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
           value={formik.values.otherResources}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
           placeholder="Input other link resources..."
         />
         {formik.touched.otherResources && formik.errors.otherResources && (
-          <div className="text-red-500 text-xs mt-1">{formik.errors.otherResources as string}</div>
+          <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.otherResources as string}</div>
         )}
       </div>
 
       {/* Other Information */}
       <div className="mb-4">
-        <label htmlFor="otherInformation" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="otherInformation" className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
           Other information
         </label>
         <textarea
@@ -171,12 +171,12 @@ const CampaignFormMediaKit: React.FC<CampaignFormBasicProps> = ({ formik}) => {
           value={formik.values.otherInformation}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full p-2 border border-gray-300 rounded text-sm md:text-base"
           rows={3}
           placeholder="Input any other relevant information..."
         />
         {formik.touched.otherInformation && formik.errors.otherInformation && (
-          <div className="text-red-500 text-xs mt-1">{formik.errors.otherInformation as string}</div>
+          <div className="text-red-500 text-[10px] md:text-xs mt-1">{formik.errors.otherInformation as string}</div>
         )}
       </div>
     </div>

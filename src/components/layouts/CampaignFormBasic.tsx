@@ -1,4 +1,3 @@
-
 import InfoTooltip from "../ui/InfoTooltip";
 // react-icons/md/MdExpandMore
 
@@ -7,9 +6,8 @@ export interface CampaignBasicInfoProps {
   initialValues?: any;
 }
 interface CampaignFormBasicProps {
-  formik: any; // Or use proper Formik types
+  formik: any; 
 }
-
 
 const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
   const getAutoValuePerUser = (goal: string) => {
@@ -34,7 +32,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
       <div className="mb-4">
         <label
           htmlFor="campaignName"
-          className="block font-medium text-[#212221] mb-1"
+          className="block font-medium text-[#212221] mb-1 text-sm md:text-base"
         >
           Campaign name <span className="text-red-500">*</span>
         </label>
@@ -45,22 +43,22 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
           value={formik.values.campaignName}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="w-full p-2 border border-[#D7D7D7] rounded"
+          className="w-full p-2 border border-[#D7D7D7] rounded text-sm md:text-base"
           placeholder="NFT Push 25"
         />
         {formik.touched.campaignName && formik.errors.campaignName && (
-          <div className="text-red-500 text-xs mt-1">
+          <div className="text-red-500 text-[10px] md:text-xs mt-1">
             {formik.errors.campaignName as string}
           </div>
         )}
       </div>
 
       {/* Campaign Goals, KPIs and Target Number */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <div>
           <label
             htmlFor="campaignGoals"
-            className="block font-medium text-[#212221] mb-1"
+            className="block font-medium text-sm md:text-base text-[#212221] mb-1 "
           >
             Campaign goals <span className="text-red-500">*</span>
           </label>
@@ -77,7 +75,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
               );
             }}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border  border-[#D7D7D7] rounded text-[#999999]"
+            className="w-full p-2 border  border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
           >
             <option value="">Select goal</option>
             <option value="Engagement">Engagement</option>
@@ -88,7 +86,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
             <option value="Signups">Signups</option>
           </select>
           {formik.touched.campaignGoals && formik.errors.campaignGoals && (
-            <div className="text-red-500 text-xs mt-1">
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">
               {formik.errors.campaignGoals as string}
             </div>
           )}
@@ -98,7 +96,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
           <div>
             <label
               htmlFor="campaignKPIs"
-              className="block font-medium text-[#212221] mb-1"
+              className="block font-medium text-[#212221] text-sm md:text-base mb-1"
             >
               Campaign KPIs <span className="text-red-500">*</span>
             </label>
@@ -109,7 +107,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
               value={formik.values.campaignKPIs}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+              className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
             >
               <option value="">Select KPI</option>
               <option value="Likes">Likes</option>
@@ -117,7 +115,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
               <option value="Shares">Shares</option>
             </select>
             {formik.touched.campaignKPIs && formik.errors.campaignKPIs && (
-              <div className="text-red-500 text-xs mt-1">
+              <div className="text-red-500 text-[10px] md:text-xs mt-1">
                 {formik.errors.campaignKPIs as string}
               </div>
             )}
@@ -126,7 +124,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
         <div>
           <label
             htmlFor="targetNumber"
-            className="block font-medium text-[#212221] mb-1"
+            className="block font-medium text-[#212221] text-sm md:text-base mb-1"
           >
             Target number <span className="text-red-500">*</span>
           </label>
@@ -137,11 +135,11 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
             value={formik.values.targetNumber}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+            className="w-full p-[5.5px] border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
             placeholder="120"
           />
           {formik.touched.targetNumber && formik.errors.targetNumber && (
-            <div className="text-red-500 text-xs mt-1">
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">
               {formik.errors.targetNumber as string}
             </div>
           )}
@@ -149,68 +147,69 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
       </div>
 
       {/* Target Audience */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-2">
-          <label className="block font-medium text-[#212221] mb-1">
+      <div>
+        <div className="">
+          <label className="block font-medium text-[#212221] text-sm md:text-base mb-1">
             Target audience <span className="text-red-500">*</span>
           </label>
         </div>
-
-        <div>
-          {/* <label htmlFor="age" className="block font-medium text-[#212221] mb-1">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            {/* <label htmlFor="age" className="block font-medium text-[#212221] text-sm md:text-base mb-1">
     Age Range <span className="text-red-500">*</span>
   </label> */}
-          <select
-            id="age"
-            name="age"
-            value={formik.values.age}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
-          >
-            <option value="" disabled>
-              Select age range
-            </option>
-            <option value="13-17">13–17</option>
-            <option value="18-25">18–25</option>
-            <option value="26-35">26–35</option>
-            <option value="36-50">36–50</option>
-            <option value="51-65">51–65</option>
-            <option value="66+">66 and above</option>
-          </select>
-          {formik.touched.age && formik.errors.age && (
-            <div className="text-red-500 text-xs mt-1">
-              {formik.errors.age as string}
-            </div>
-          )}
-        </div>
+            <select
+              id="age"
+              name="age"
+              value={formik.values.age}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
+            >
+              <option value="" disabled>
+                Select age range
+              </option>
+              <option value="13-17">13–17</option>
+              <option value="18-25">18–25</option>
+              <option value="26-35">26–35</option>
+              <option value="36-50">36–50</option>
+              <option value="51-65">51–65</option>
+              <option value="66+">66 and above</option>
+            </select>
+            {formik.touched.age && formik.errors.age && (
+              <div className="text-red-500 text-[10px] md:text-xs mt-1">
+                {formik.errors.age as string}
+              </div>
+            )}
+          </div>
 
-        <div>
-          <select
-            id="gender"
-            name="gender"
-            value={formik.values.gender}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
-          >
-            <option value="">Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Both">Both</option>
-          </select>
-          {formik.touched.gender && formik.errors.gender && (
-            <div className="text-red-500 text-xs mt-1">
-              {formik.errors.gender as string}
-            </div>
-          )}
+          <div>
+            <select
+              id="gender"
+              name="gender"
+              value={formik.values.gender}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
+            >
+              <option value="">Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Both">Both</option>
+            </select>
+            {formik.touched.gender && formik.errors.gender && (
+              <div className="text-red-500 text-[10px] md:text-xs mt-1">
+                {formik.errors.gender as string}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       <div>
         <label
           htmlFor="industry"
-          className="block font-medium text-[#212221] mb-1"
+          className="block font-medium text-[#212221] text-sm md:text-base mb-1"
         >
           Industry <span className="text-red-500">*</span>
         </label>
@@ -220,7 +219,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
           value={formik.values.industry}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+          className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
         >
           <option value="">Select industry</option>
           <option value="DeFi">DeFi</option>
@@ -233,7 +232,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
           <option value="DAOs">DAOs</option>
         </select>
         {formik.touched.industry && formik.errors.industry && (
-          <div className="text-red-500 text-xs mt-1">
+          <div className="text-red-500 text-[10px] md:text-xs mt-1">
             {formik.errors.industry as string}
           </div>
         )}
@@ -243,7 +242,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
         <div>
           <label
             htmlFor="valuePerUser"
-            className="block font-medium text-[#212221] mb-1"
+            className="block font-medium text-[#212221] text-sm md:text-base mb-1"
           >
             Value Per User (VPU) <span className="text-red-500">*</span>
           </label>
@@ -254,11 +253,11 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
               value={formik.values.valuePerUser}
               readOnly
               disabled
-              className="w-full p-2 border outline-none border-[#D7D7D7] rounded text-[#999999] bg-gray-100"
+              className="w-full p-2 border outline-none border-[#D7D7D7] rounded text-[#999999] bg-gray-100 text-sm md:text-base"
             />
           </div>
           {formik.touched.valuePerUser && formik.errors.valuePerUser && (
-            <div className="text-red-500 text-xs mt-1">
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">
               {formik.errors.valuePerUser as string}
             </div>
           )}
@@ -267,12 +266,12 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
         <div className="relative ">
           <label
             htmlFor="amount"
-            className="font-medium text-[#212221] mb-1 flex gap-1 items-center "
+            className="font-medium text-[#212221] mb-1 flex gap-1 items-center text-sm md:text-base "
           >
             Amount (VPU) <span className="text-red-500">*</span>
             <InfoTooltip text="Value per user = how much would be for each verified user that performs the task" />
           </label>
-          
+
           <div className="relative flex items-center">
             <input
               type="number"
@@ -281,13 +280,13 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
               value={formik.values.amount}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+              className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
               placeholder="0.00"
             />
-            <span className="absolute right-3 text-gray-500">USDC</span>
+            <span className="absolute right-3 text-gray-500 text-sm md:text-base">USDC</span>
           </div>
           {formik.touched.amount && formik.errors.amount && (
-            <div className="text-red-500 text-xs mt-1">
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">
               {formik.errors.amount as string}
             </div>
           )}
@@ -298,16 +297,14 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
       <div className="mb-4 relative">
         <label
           htmlFor="totalLiquidity"
-          className=" text-sm font-medium text-[#212221] mb-1 flex items-center gap-1"
+          className=" text-sm md:text-base font-medium text-[#212221] mb-1 flex items-center gap-1"
         >
           Total liquidity <span className="text-red-500">*</span>
           <InfoTooltip
-  text={`Total liquidity = how much you’re willing to put into the campaign.\nTotal reward (Amount × Target Number) must not exceed total liquidity.`}
-/>
-
-          
+            text={`Total liquidity = how much you’re willing to put into the campaign.\nTotal reward (Amount × Target Number) must not exceed total liquidity.`}
+          />
         </label>
-        
+
         <div className="relative flex items-center">
           <input
             type="number"
@@ -316,13 +313,13 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
             value={formik.values.totalLiquidity}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
             placeholder="0.00"
           />
-          <span className="absolute right-3 text-gray-500">USDC</span>
+          <span className="absolute right-3 text-gray-500 text-sm md:text-base">USDC</span>
         </div>
         {formik.touched.totalLiquidity && formik.errors.totalLiquidity && (
-          <div className="text-red-500 text-xs mt-1">
+          <div className="text-red-500 text-[10px] md:text-xs mt-1">
             {formik.errors.totalLiquidity as string}
           </div>
         )}
@@ -333,7 +330,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
         <div>
           <label
             htmlFor="startDate"
-            className="block text-sm font-medium text-[#212221] mb-1"
+            className="block text-sm md:text-base font-medium text-[#212221] mb-1"
           >
             Start date <span className="text-red-500">*</span>
           </label>
@@ -344,10 +341,10 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
             value={formik.values.startDate}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
           />
           {formik.touched.startDate && formik.errors.startDate && (
-            <div className="text-red-500 text-xs mt-1">
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">
               {formik.errors.startDate as string}
             </div>
           )}
@@ -356,7 +353,7 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
         <div>
           <label
             htmlFor="endDate"
-            className="block text-sm font-medium text-[#212221] mb-1"
+            className="block text-sm md:text-base font-medium text-[#212221] mb-1"
           >
             End date <span className="text-red-500">*</span>
           </label>
@@ -367,10 +364,10 @@ const CampaignFormBasic: React.FC<CampaignFormBasicProps> = ({ formik }) => {
             value={formik.values.endDate}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999]"
+            className="w-full p-2 border border-[#D7D7D7] rounded text-[#999999] text-sm md:text-base"
           />
           {formik.touched.endDate && formik.errors.endDate && (
-            <div className="text-red-500 text-xs mt-1">
+            <div className="text-red-500 text-[10px] md:text-xs mt-1">
               {formik.errors.endDate as string}
             </div>
           )}
