@@ -10,19 +10,19 @@ import { motion } from "framer-motion";
 
 function LoadingState() {
   return (
-    <div className="flex w-full h-screen justify-center items-center m-auto bg-[#330065]">
+    <div className="flex w-full h-full justify-center items-center fixed inset-0 bg-[#330065] z-50">
       <motion.div
-        initial={{ opacity: 0, scale: 0.5, y: -50 }}
+        initial={{ opacity: 0.4, scale: 0.5, y: -50 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.5, y: 50 }}
+        exit={{ opacity: 0.4  , scale: 0.5, y: 50 }}
         transition={{
-          duration: 1.5,
+          duration: .5,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
         }}
       >
-        <Image src="/logo.jpg" alt="logo" width={100} height={100} />
+        <Image src="/logo.jpg" alt="logo" width={200} height={200} />
       </motion.div>
     </div>
   );

@@ -95,23 +95,23 @@ const CreateCampaign: React.FC<CreateCampaignProps> = ({ handleGoBack, onCampaig
   return (
     <div className="relative">
       <CreateCampaignHead handleGoBack={handleGoBack} />
-      <div className="max-w-[780px] mx-auto p-6 bg-white rounded-lg shadow">
+      <div className="max-w-[780px] mx-auto p-2 md:p-6 bg-white rounded-lg shadow">
         <form onSubmit={formik.handleSubmit} className="space-y-8 mt-6">
           <CampaignFormBasic formik={formik} />
           <CampaignFormMediaKit formik={formik} />
           <CampaignFormMediaUpload onUpload={handleMediaUpload} />
 
-          <div className="flex justify-end gap-8">
+          <div className="flex justify-between gap-8">
             <button
               type="button"
               onClick={handleCancel}
-              className="px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50"
+              className="px-3 md:px-6 py-1 md:py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 text-sm md:text-base"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-[#330065] text-white rounded-full hover:bg-purple-700"
+              className="px-3 md:px-6 py-1 md:py-2 bg-[#330065] text-white rounded-full hover:bg-purple-700 text-sm md:text-base"
               disabled={formik.isSubmitting || isLoading}
             >
               Create a campaign

@@ -81,7 +81,7 @@ const MyCampaignDetails: React.FC<MyCampaignDetailsProps> = ({
   };
 
   return (
-    <div className="w-full p-3 sm:p-4 bg-white rounded-md shadow">
+    <div className="w-full sm:p-4 bg-white md:rounded-md md:shadow">
       <div className="flex items-center mb-3 sm:mb-4">
         <button
           onClick={onBack}
